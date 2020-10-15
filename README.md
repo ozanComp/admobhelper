@@ -16,10 +16,11 @@ dependencies {
 
 Manifest
 --------
-<uses-permission android:name="android.permission.INTERNET" />
-<meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="--AD ID--"/>
+
+Insert INTERNET Permission
+Insert meta-data with your AD ID
+
+
 
 Using
 -----------
