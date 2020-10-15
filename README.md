@@ -3,16 +3,22 @@
 Admob library for Android
 
 Gradle Setup
+--------
+
 repositories {
     maven { url 'https://jitpack.io' }
 }
+
 dependencies {
     implementation 'com.github.ozanComp:admobhelper:1.2'
     implementation 'com.google.firebase:firebase-ads:19.4.0'
 }
 
 Manifest
+--------
+
 <uses-permission android:name="android.permission.INTERNET" />
+
 <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="--AD ID--"/>
