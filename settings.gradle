@@ -1,0 +1,3 @@
+include ':admoblib'
+include ':app'
+rootProject.name = "AdMobHelper"

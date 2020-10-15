@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AdMobHelper</string>
+    <string name="adID">ca-app-pub-7004055317462700~5970649469</string>
+    <string name="adBanner">ca-app-pub-7004055317462700/1667925453</string>
+    <string name="adInterstitial">ca-app-pub-7004055317462700/2230375691</string>
+    <string name="banner_test">Banner Test</string>
+    <string name="interstitial_test">Interstitial Test</string>
+</resources>
