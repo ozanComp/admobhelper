@@ -23,6 +23,9 @@ Manifest
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="--AD ID--"/>
 
+Using
+-----------
+
 For Banner Ads:
 Using AdMobBanner.
 
@@ -38,5 +41,7 @@ Using AdMobReward.
 For App Open Ads:
 Using AdMobAppOpen.
 
+Example App
+-----------
 
 Download the https://play.google.com/store/apps/details?id=com.sol.admobhelper for example app.
