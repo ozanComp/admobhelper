@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">AdMobHelper</string>
-    <string name="adID">ca-app-pub-7004055317462700~5970649469</string>
-    <string name="adBanner">ca-app-pub-7004055317462700/1667925453</string>
-    <string name="adInterstitial">ca-app-pub-7004055317462700/2230375691</string>
-    <string name="banner_test">Banner Test</string>
-    <string name="interstitial_test">Interstitial Test</string>
+    <string name="adID">ca-app-pub-7004055317462700~8682844223</string>
+    <string name="adBanner">ca-app-pub-7004055317462700/8491272538</string>
+    <string name="adInterstitial">ca-app-pub-7004055317462700/1036288492</string>
+    <string name="adNative">ca-app-pub-7004055317462700/9772047697</string>
+    <string name="adOpen">ca-app-pub-7004055317462700/5593646457</string>
+    <string name="adReward">ca-app-pub-7004055317462700/3241641824</string>
+    <string name="banner_test">Banner AD Test</string>
+    <string name="interstitial_test">Interstitial AD Test</string>
+    <string name="native_test">Native AD Test</string>
+    <string name="reward_test">Reward AD Test</string>
+    <string name="open_test">Open AD Test</string>
 </resources>

@@ -1,39 +1,144 @@
 package com.sol.admobhelper;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdView;
-import com.sol.admoblib.AdMobLib;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.sol.admoblib.AdMobBanner;
+import com.sol.admoblib.AdMobInterstitial;
+import com.sol.admoblib.AdMobNative;
+import com.sol.admoblib.AdMobReward;
 
 public class MainActivity extends AppCompatActivity {
 
-    AdView adView;
-    Button buttonBanner, buttonInterstitial;
+    private AdMobBanner adMobBanner;
+    private AdMobNative adMobNative;
+    private AdMobReward adMobReward;
+    private AdMobInterstitial adMobInterstitial;
+
+    private AdView adView;
+    private NativeExpressAdView nativeExpressAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adView = findViewById(R.id.adView);
-        buttonBanner = findViewById(R.id.buttonBanner);
-        buttonInterstitial = findViewById(R.id.buttonInterstitial);
+        initAdViews();
+        initButton();
+
+        initAdMobBanner();
+        initAdMobNative();
+        initAdMobReward();
+        initAdMobInterstitial();
+    }
+
+    private void initAdMobBanner(){
+        adMobBanner = new AdMobBanner(getApplicationContext(), adView);
+    }
+
+    private void initAdMobNative(){
+        adMobNative = new AdMobNative(getApplicationContext(), nativeExpressAdView) {
+            @Override
+            public void onEnd() {
+
+            }
+
+            @Override
+            public void onLoad() {
+                adMobNative.show();
+            }
+        };
+    }
+
+    private void initAdMobReward(){
+        adMobReward = new AdMobReward(this, getString(R.string.adReward)) {
+            @Override
+            public void onLoad() {
+                adMobReward.show();
+            }
+
+            @Override
+            public void onOpen() {
+                Log.d(MainActivity.class.getSimpleName(), "on open reward ad");
+            }
+
+            @Override
+            public void onClose() {
+                Log.d(MainActivity.class.getSimpleName(), "on close reward ad");
+            }
+
+            @Override
+            public void onFailedLoad(LoadAdError adError) {
+                Log.d(MainActivity.class.getSimpleName(), "on failed load reward ad");
+            }
+
+            @Override
+            public void onEarnedReward(@NonNull RewardItem reward) {
+                Log.d(MainActivity.class.getSimpleName(), "earned reward " + reward.getType());
+            }
+
+            @Override
+            public void onFailedEarnedReward(AdError adError) {
+                Log.d(MainActivity.class.getSimpleName(), "on failed earned reward");
+            }
+        };
+    }
+
+    private void initAdMobInterstitial(){
+        adMobInterstitial = new AdMobInterstitial(getApplicationContext(), getString(R.string.adInterstitial)) {
+            @Override
+            public void onLoad() {
+                adMobInterstitial.show();
+            }
+        };
+    }
+
+    private void initAdViews(){
+        adView = findViewById(R.id.adViewBanner);
+        nativeExpressAdView = findViewById(R.id.adViewNative);
+    }
+
+    private void initButton(){
+        Button buttonBanner = findViewById(R.id.buttonBanner);
+        Button buttonNative = findViewById(R.id.buttonNative);
+        Button buttonReward = findViewById(R.id.buttonReward);
+        Button buttonInterstitial = findViewById(R.id.buttonInterstitial);
 
         buttonBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdMobLib.instance(getApplicationContext()).loadBanner(adView);
+                adMobBanner.load();
             }
         });
 
         buttonInterstitial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdMobLib.instance(getApplicationContext()).loadInterstitial(getString(R.string.adInterstitial));
+                adMobInterstitial.load();
+            }
+        });
+
+        buttonNative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adMobNative.load();
+            }
+        });
+
+        buttonReward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adMobReward.load();
             }
         });
     }
