@@ -10,5 +10,5 @@
     <string name="interstitial_test">Interstitial AD Test</string>
     <string name="native_test">Native AD Test</string>
     <string name="reward_test">Reward AD Test</string>
-    <string name="open_test">Open AD Test</string>
+    <string name="open_test">App Open AD Test</string>
 </resources>

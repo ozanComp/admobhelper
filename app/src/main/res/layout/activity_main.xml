@@ -78,6 +78,28 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linearLayoutThird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayoutSecond"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonAppOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_test"
+                android:textAllCaps="false"
+                tools:ignore="ButtonStyle">
+            </Button>
+
+        </LinearLayout>
+
         <com.google.android.gms.ads.NativeExpressAdView
             android:id="@+id/adViewNative"
             android:layout_width="wrap_content"

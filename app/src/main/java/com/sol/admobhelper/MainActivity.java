@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.gms.ads.rewarded.RewardItem;
+import com.sol.admoblib.AdMobAppOpen;
 import com.sol.admoblib.AdMobBanner;
 import com.sol.admoblib.AdMobInterstitial;
 import com.sol.admoblib.AdMobNative;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private AdMobBanner adMobBanner;
     private AdMobNative adMobNative;
     private AdMobReward adMobReward;
+    private AdMobAppOpen adMobAppOpen;
     private AdMobInterstitial adMobInterstitial;
 
     private AdView adView;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         initAdMobBanner();
         initAdMobNative();
         initAdMobReward();
+        initAdMobAppOpen();
         initAdMobInterstitial();
     }
 
@@ -103,6 +106,22 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    private void initAdMobAppOpen(){
+        adMobAppOpen = new AdMobAppOpen(this, getString(R.string.adOpen)) {
+            @Override
+            public void onLoad() {
+                Log.d(MainActivity.class.getSimpleName(), "load app open ad");
+                adMobAppOpen.show();
+            }
+
+            @Override
+            public void onFailedLoad() {
+                Log.d(MainActivity.class.getSimpleName(), "failed load app open ad");
+            }
+        };
+
+    }
+
     private void initAdViews(){
         adView = findViewById(R.id.adViewBanner);
         nativeExpressAdView = findViewById(R.id.adViewNative);
@@ -112,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonBanner = findViewById(R.id.buttonBanner);
         Button buttonNative = findViewById(R.id.buttonNative);
         Button buttonReward = findViewById(R.id.buttonReward);
+        Button buttonAppOpen = findViewById(R.id.buttonAppOpen);
         Button buttonInterstitial = findViewById(R.id.buttonInterstitial);
 
         buttonBanner.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +159,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adMobReward.load();
+            }
+        });
+
+        buttonAppOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adMobAppOpen.load();
             }
         });
     }
