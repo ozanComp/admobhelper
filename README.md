@@ -27,19 +27,19 @@ Using
 -----------
 
 For Banner Ads:
-Using AdMobBanner.
+Using AdMobBanner Object.
 
 For Interstitial Ads:
-Using AdMobInterstitial.
+Using AdMobInterstitial Object.
 
 For Native Ads:
-Using AdMobNative.
+Using AdMobNative Object.
 
 For Reward Ads:
-Using AdMobReward.
+Using AdMobReward Object.
 
 For App Open Ads:
-Using AdMobAppOpen.
+Using AdMobAppOpen Object.
 
 Example App
 -----------
