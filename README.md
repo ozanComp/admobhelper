@@ -40,8 +40,3 @@ Using AdMobReward Object.
 
 For App Open Ads:
 Using AdMobAppOpen Object.
-
-Example App
------------
-
-Download the https://play.google.com/store/apps/details?id=com.sol.admobhelper for example app.
