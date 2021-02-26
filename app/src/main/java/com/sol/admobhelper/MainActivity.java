@@ -103,6 +103,21 @@ public class MainActivity extends AppCompatActivity {
             public void onLoad() {
                 adMobInterstitial.show();
             }
+
+            @Override
+            public void onLoadFailed() {
+                Log.d(MainActivity.class.getSimpleName(), "onLoadFailed");
+            }
+
+            @Override
+            public void onOpened() {
+                Log.d(MainActivity.class.getSimpleName(), "onOpened");
+            }
+
+            @Override
+            public void onClosed() {
+                Log.d(MainActivity.class.getSimpleName(), "onClosed");
+            }
         };
     }
 

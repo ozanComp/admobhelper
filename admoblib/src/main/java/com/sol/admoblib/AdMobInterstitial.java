@@ -5,9 +5,13 @@ import android.content.Context;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
 
 public abstract class AdMobInterstitial extends AdMobLib{
     public abstract void onLoad();
+    public abstract void onLoadFailed();
+    public abstract void onOpened();
+    public abstract void onClosed();
 
     private String adUnitId;
     private Context context;
@@ -28,6 +32,24 @@ public abstract class AdMobInterstitial extends AdMobLib{
             public void onAdLoaded() {
                 super.onAdLoaded();
                 onLoad();
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                onLoadFailed();
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+                onOpened();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                onClosed();
             }
         });
         interstitialAd.loadAd(new AdRequest.Builder().build());
