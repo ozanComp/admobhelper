@@ -20,32 +20,21 @@ public abstract class AdMobReward extends AdMobLib{
     public abstract void onEarnedReward(@NonNull RewardItem reward);
     public abstract void onFailedEarnedReward(AdError adError);
 
+    private String adUnitId;
     private Activity activity;
     private RewardedAd rewardedAd;
-    private RewardedAdLoadCallback adLoadCallback;
-    private RewardedAdCallback adCallback;
 
     public AdMobReward(Activity activity, String adUnitId){
         super(activity);
         this.activity = activity;
-
-        rewardedAd = new RewardedAd(activity, adUnitId);
-        setAdLoadCallback();
-        setAdCallback();
+        this.adUnitId = adUnitId;
     }
 
     @Override
     public void load(){
-        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
-    }
+        rewardedAd = new RewardedAd(activity, adUnitId);
 
-    @Override
-    public void show(){
-        rewardedAd.show(activity, adCallback);
-    }
-
-    private void setAdLoadCallback(){
-        adLoadCallback = new RewardedAdLoadCallback() {
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
             @Override
             public void onRewardedAdLoaded() {
                 onLoad();
@@ -56,10 +45,12 @@ public abstract class AdMobReward extends AdMobLib{
                 onFailedLoad(adError);
             }
         };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
     }
 
-    private void setAdCallback(){
-        adCallback = new RewardedAdCallback() {
+    @Override
+    public void show(){
+        RewardedAdCallback adCallback = new RewardedAdCallback() {
             @Override
             public void onUserEarnedReward(@NonNull RewardItem reward) {
                 onEarnedReward(reward);
@@ -80,5 +71,6 @@ public abstract class AdMobReward extends AdMobLib{
                 onClose();
             }
         };
+        rewardedAd.show(activity, adCallback);
     }
 }
